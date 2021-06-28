@@ -74,6 +74,8 @@ function _get_repl_str($char, $encoding=null) {
 
 function unidecode($string, $errors=null, $replace_str=null, $encoding=null) {
   $retval = "";
+  if (is_null($encoding))
+    $encoding = mb_internal_encoding();
 
   for ($index=0; $index < mb_strlen($string, $encoding); $index++) {
     $char = mb_substr($string, $index, 1, $encoding);
