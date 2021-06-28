@@ -1,0 +1,23 @@
+This library was created by Benjamin Renard <brenard@easter-eggs.com> and this is a PHP
+port of Unidecode Python module by Tomaž Šolc <tomaz.solc@tablix.org>, itself based on
+Text::Unidecode Perl module by Sean M. Burke <sburke@cpan.org>.
+
+Copyright:
+
+    Copyright (C) 2021 Benjamin Renard <brenard@easter-eggs.com>
+
+License:
+
+  This program is free software; you can redistribute it and/or modify it under the terms
+  of the GNU General Public License as published by the Free Software Foundation; either
+  version 2 of the License, or (at your option) any later version.
+
+  This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+  See the GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License along with this program;
+  if not, write to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
+  Boston, MA 02110-1301 USA. The programs and documentation in this dist are distributed in
+  the hope that they will be useful, but without any warranty; without even the implied
+  warranty of merchantability or fitness for a particular purpose.

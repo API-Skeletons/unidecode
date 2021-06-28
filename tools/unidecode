@@ -1,0 +1,80 @@
+#!/usr/bin/php
+<?php
+
+require('unidecode/unidecode.php');
+
+function fatal($msg) {
+  fwrite(STDERR, $msg . "\n");
+  exit(1);
+}
+
+function _check_encoding($encoding) {
+  $valid_encodings = mb_list_encodings();
+  if (!in_array($encoding, $valid_encodings))
+    fatal(
+      "Invalid encoding '$encoding' provided. ".
+      "Must be one of the following:\n - ".
+      implode("\n - ", $valid_encodings)
+    );
+  return $encoding;
+}
+
+$default_encoding = mb_internal_encoding();
+function usage() {
+  global $default_encoding;
+  echo "usage: unidecode [-h] [-e ENCODING] [-c TEXT] [FILE]\n";
+  echo "\n";
+  echo "Transliterate Unicode text into ASCII. FILE is path to file to transliterate.\n";
+  echo "Standard input is used if FILE is omitted and -c is not specified.\n";
+  echo "\n";
+  echo "positional arguments:\n";
+  echo "  FILE\n";
+  echo "\n";
+  echo "optional arguments:\n";
+  echo "  -h, --help            show this help message and exit\n";
+  echo "  -e ENCODING, --encoding ENCODING\n";
+  echo "                        Specify an encoding (default is $default_encoding)\n";
+  echo "  -c TEXT               Transliterate TEXT instead of FILE\n";
+  exit(0);
+}
+
+$options = getopt(
+  'e:c:h',
+  array('encoding:'),
+  $pos_args_idx
+);
+if (isset($options['h']))
+  usage();
+
+$pos_args = array_slice($argv, $pos_args_idx);
+
+$encoding = $default_encoding;
+if (isset($options['encoding']))
+  $encoding = _check_encoding($options['encoding']);
+elseif (isset($options['e']))
+  $encoding = _check_encoding($options['e']);
+
+// Default input is STDIN and if file is provided as first positional arguments, use it
+$input_path = "php://stdin";
+if (count($pos_args) >= 1) {
+  if (isset($options['c']))
+    fatal("Can't use both FILE and -c option");
+  $input_path = $pos_args[0];
+}
+
+if (isset($options['c'])) {
+  $stream = $options['c'];
+  # add a newline to the string if it comes from the
+  # command line so that the result is printed nicely
+  # on the console.
+  $stream .= "\n";
+}
+else {
+  $fd = fopen($input_path, 'rb');
+  $stream = "";
+  while(FALSE !== ($line = fgets($fd)))
+    $stream .= $line;
+  fclose($fd);
+}
+
+fwrite(STDOUT, unidecode($stream, 'ignore', '?', $encoding));

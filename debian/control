@@ -1,0 +1,14 @@
+Source: php-unidecode
+Section: web
+Priority: optional
+Maintainer: Benjamin Renard <brenard@easter-eggs.com>
+Build-Depends: debhelper (>= 7)
+Standards-Version: 3.9.1
+
+Package: php-unidecode
+Architecture: all
+Depends: ${misc:Depends}
+Description: PHP library to transliterate Unicode text into plain 7-bit ASCII.
+  This PHP library provide a unidecode function to transliterate Unicode
+  text into plain 7-bit ASCII.
+  This is a PHP port of Unidecode Python module.
