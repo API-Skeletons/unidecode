@@ -1,7 +1,8 @@
 #!/usr/bin/php
 <?php
 
-require('unidecode/unidecode.php');
+require('Unidecode/Unidecode.php');
+use Unidecode\Unidecode;
 
 function fatal($msg) {
   fwrite(STDERR, $msg . "\n");
@@ -77,4 +78,4 @@ else {
   fclose($fd);
 }
 
-fwrite(STDOUT, unidecode($stream, 'ignore', '?', $encoding));
+fwrite(STDOUT, Unidecode::unidecode($stream, 'ignore', '?', $encoding));
