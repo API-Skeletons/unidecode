@@ -1,3 +1,15 @@
 {
-    "name": "brenard/php-unidecode"
+    "name": "brenard/php-unidecode",
+    "description": "Transliterate Unicode text into plain 7-bit ASCII.",
+    "homepage": "https://gitlab.easter-eggs.com/brenard/php-unidecode",
+    "license": ["GPL-2.0+"],
+    "authors": [
+        {
+            "name": "Benjamin Renard",
+            "homepage": "https://gitlab.easter-eggs.com/brenard"
+        }
+    ],
+    "autoload": {
+        "files": ["Unidecode/Unidecode.php"]
+    }
 }
